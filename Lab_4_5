@@ -1,0 +1,52 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Xml.Schema;
+
+namespace Lab_4_5_TriviaLeaderboard
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            //create the list of scores;
+            List<int> scoreList = new List<int>();
+            scoreList.Add(4400);
+            scoreList.Add(8900);
+            scoreList.Add(1200);
+            scoreList.Add(3700);
+            scoreList.Add(7200);
+
+            //sort scores ascending
+            scoreList.Sort();
+
+            foreach (int sl in scoreList)
+            {
+                Console.WriteLine(sl);
+            }
+
+            //sort scores descending
+            scoreList.Reverse();
+
+            foreach (int sl in scoreList)
+            {
+                Console.WriteLine(sl);
+            }
+
+            //add a new item
+            scoreList.Add(2400);
+
+            //remove and item
+            scoreList.Remove(4400);
+
+            scoreList.Sort();
+            scoreList.Reverse();
+
+            foreach (int sl in scoreList)
+            {
+                Console.WriteLine(sl);
+            }
+
+        }
+    }
+}
