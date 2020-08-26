@@ -41,7 +41,7 @@ namespace Lab_5_4_Mario
             mario.numOfLives += 1;
 
             Console.WriteLine("Mario finds a secret Fire Flower and can now shoot fireballs. Change mario!");
-            mario.canShootFireBalls = true;
+            mario.canShootFireballs = true;
 
             Console.WriteLine("Mario finds another power up mushroom and gets big. Change Mario");
             mario.sizeOfMario = Mario.Size.large;
