@@ -1,0 +1,63 @@
+using Microsoft.VisualBasic.CompilerServices;
+using System;
+using System.Diagnostics.CodeAnalysis;
+
+namespace Lab_2_5
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Hello World!");
+
+            //using data input from a user
+            //string userInput = Console.ReadLine();
+
+            //convert text to a number with int.Parse() - 3 examples
+            //string userInput = Console.ReadLine();
+            //int num1 = int.Parse(userInput);
+
+            //int userInput2 = int.Parse(Console.ReadLine());
+
+            //int userInput3 = Convert.ToInt32(Console.ReadLine());
+
+            //1. adding, subtracting, multiplying and dividing 2 numbers entered by user
+            Console.WriteLine("Enter a number");
+            int userInput1 = int.Parse(Console.ReadLine());
+            Console.WriteLine("Enter another number");
+            int userInput2 = int.Parse(Console.ReadLine());
+
+            int result = userInput1 + userInput2;
+            Console.WriteLine("The two numbers added together = " + result);
+
+            result = userInput1 - userInput2;
+            Console.WriteLine("The two numbers subtracted = " + result);
+
+            result = userInput1 * userInput2;
+            Console.WriteLine("The two numbers multiplied together = " + result);
+
+            result = userInput1 / userInput2;
+            Console.WriteLine("Number 2 divided by number 1 = " + result);
+
+            //2. Print "Hello" and your name
+            Console.WriteLine("Enter your Name");
+            string userInput3 = Console.ReadLine();
+            Console.WriteLine("Hello " + userInput3);
+
+            //3. Produce output of three numbers multiplied together
+            Console.WriteLine("Enter one more number");
+            int userInput4 = int.Parse(Console.ReadLine());
+
+            result = userInput1 * userInput2 * userInput4;
+            Console.WriteLine("All three numbers multiplied together = " + result);
+
+            //4. Tell someone you look younger than your age
+            Console.WriteLine("Type in your age");
+            string userInput5 = Console.ReadLine();
+            Console.WriteLine("You look younger than " + userInput5);
+
+
+
+        }
+    }
+}
