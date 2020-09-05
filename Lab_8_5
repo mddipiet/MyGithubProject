@@ -1,0 +1,164 @@
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Lab_8_5_RealityTVStar
+{
+    class AboveDeck : Application
+    {
+        public int yearsOfExperience;
+        public string nationality;
+
+        public AboveDeck(int yearsOfExperience, string nationality, string firstName, string lastName, string DOB, string address,
+            string city, string state, int zip, string phoneNumber, string email) : base(firstName, lastName, DOB, address, city, state,
+                zip, phoneNumber, email)
+        {
+            this.yearsOfExperience = yearsOfExperience;
+            this.nationality = nationality;
+        }
+
+        public override void Accept()
+        {
+            Console.WriteLine("Congrats! You have been accepted to Above Deck!");
+        }
+    }
+}
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Lab_8_5_RealityTVStar
+{
+    class Application
+    {
+        public string firstName;
+        public string lastName;
+        public string DOB;
+        public string address;
+        public string city;
+        public string state;
+        public int zip;
+        public string phoneNumber;
+        public string email;
+        public bool isSubmitted;
+        public bool isAccepted;
+
+        public Application(string firstName, string lastName, string DOB, string address, string city, string state, int zip,
+            string phoneNumber, string email)
+        {
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.DOB = DOB;
+            this.address = address;
+            this.city = city;
+            this.state = state;
+            this.zip = zip;
+            this.phoneNumber = phoneNumber;
+            this.email = email;
+        }
+
+        public void Submit()
+        {
+            isSubmitted = true;
+            Console.WriteLine("Application has been submitted");
+        }
+
+        public virtual void Accept()
+        {
+            isAccepted = true;
+            Console.WriteLine("Application Accepted");
+        }
+    }
+}
+using System;
+using System.Collections.Generic;
+using System.IO.Compression;
+using System.Net.Sockets;
+using System.Runtime.InteropServices;
+using System.Text;
+
+namespace Lab_8_5_RealityTVStar
+{
+    class DreamHouseHunters : Application
+    {
+        public string jobTitle;
+        public int income;
+        public int whenBuying;
+        public int bedrooms;
+        public int bathrooms;
+
+        public DreamHouseHunters(string jobTitle, int income, int whenBuying, int bedrooms, int bathrooms,
+            string firstName, string lastName, string DOB, string address, string city, string state, int zip,
+            string phoneNumber, string email) : base(firstName, lastName, DOB, address, city, state, zip, phoneNumber, email)
+            {
+            this.jobTitle = jobTitle;
+            this.income  = income;
+            this.whenBuying = whenBuying;
+            this.bedrooms = bedrooms;
+            this. bathrooms = bathrooms;
+            }
+        
+        public override void Accept()
+        {
+            base.Accept();
+            Console.WriteLine("Congrats! You have been accepted to Dream House Hunters!");
+        }
+   
+    }
+}
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Lab_8_5_RealityTVStar
+{
+    class ParadiseIsland : Application
+    {
+        public string gender;
+        public string nameOfFriend;
+        public int yearsDating;
+
+
+        public ParadiseIsland(string gender, string nameOfFriend, int yearsDating, string firstName, string lastName, string DOB,
+            string address, string city, string state, int zip, string phoneNumber, string email) : base(firstName, lastName, DOB, address, city,
+                state, zip, phoneNumber, email)
+        {
+            this.gender = gender;
+            this.nameOfFriend = nameOfFriend;
+            this.yearsDating = yearsDating;
+        }
+
+        public override void Accept()
+        {
+            base.Accept();
+            Console.WriteLine("Congrats! You have been accepted to Paradise Island!");
+        }
+    }
+}
+using System;
+
+namespace Lab_8_5_RealityTVStar
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            DreamHouseHunters contestantDHH = new DreamHouseHunters("Bassist", 60000, 3, 3, 2, "Geddy", "Lee", "7/29/53", "7831 105th Avenue",
+                "Pleasant Prairie", "WI", 53158, "262-555-1234", "geddy.lee@rush.com");
+
+            ParadiseIsland contestantPI = new ParadiseIsland("Male", "Charlene", 45, "Alex", "Lifeson", "8/27/53", "7831 105th Avenue",
+                "Pleasant Prairie", "WI", 53158, "262-555-1234", "alex.lifeson@rush.com");
+
+            AboveDeck contestantAD = new AboveDeck(20, "Canadian", "Peart", "Neil", "9/12/52", "7831 105th Avenue", "Pleasant Prairie", "WI", 53158, "262-555-1234"," neil.peart@rush.com");
+
+            contestantDHH.Submit(); 
+            contestantDHH.Accept();
+
+            contestantPI.Submit();
+            contestantPI.Accept();
+
+            contestantAD.Submit();
+            contestantAD.Accept();
+        }
+    }
+}
