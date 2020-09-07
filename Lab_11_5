@@ -1,0 +1,121 @@
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace LAB_11_5_DB_HTML
+{
+    class DbContext
+    {
+    }
+}
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.ComponentModel.DataAnnotations;
+using Microsoft.EntityFrameworkCore;
+
+namespace LAB_11_5_DB_HTML
+{
+    class Film
+    {
+        [key]
+        public film_id {get; set;};
+        public string title { get; set; }
+        public string description { get; set; }
+        public string release_year { get; set; }
+        public byte language_id { get; set; }
+        public byte original_language_id { get; set; }
+        public byte rental_duration { get; set; }
+        public decimal rental_rate { get; set; }
+        public int length { get; set; }
+        public decimal replacement_cost { get; set; }
+        public string rating { get; set; }
+        public string special_features { get; set; }
+        public DateTime last_update { get; set; }
+
+        public Film (string title, string description, string release_year, byte rental_duration, decimal rental_rate, int length, 
+            decimal replacement_cost, string rating)
+        {
+        this.title = title;
+        this.description = description;
+        this.release_year = release_year;
+        this.rental_duration = rental_duration;
+        this.rental_rate = rental_rate;
+        this.length = length;
+        this.replacement_cost = replacement_cost;
+        this.rating = rating;
+
+        special_features = "Trailers";
+        last_update = DateTime.Now;
+        language_id = 1;
+        original_language_id = 1;
+        }
+    }
+}
+using System;
+using System.IO;
+using System.Linq;
+using System.Text;
+
+namespace LAB_11_5_DB_HTML
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            SakilaContext sakila = new SakilaContext();
+            Film war1917 = new Film("1917", "2019 War Drama by Director Sam Mendes", "2019", 3, 5.99m, 179, 19.9m, "R");
+            Film joker = new Film("Joker", "Oscar-Nominated SuperHero Drama", "2019", 3, 6.99m, 182, 23.99m, "R");
+            Film skywalker = new Film("Star Wars: The Rise of Skywalker", "Trash Disney Fanfic", "2019", 3, 4.99m, 202, 21.9m, "PG-13");
+
+            sakila.Film.Add(war1917);
+            sakila.Film.Add(joker);
+            sakila.Film.Add(skywalker);
+            sakila.SaveChanges();
+
+            Film[] allFilms = sakila.Film.ToArray();
+
+            var newFilms = allFilms.Where(x => x.release_year == "2019");
+
+            StringBuilder html = new StringBuilder();
+            html.Append("<html>\n");
+            html.Append(" <head>\n");
+            html.Append("  <title>Sakila New Films</title>\n");
+            html.Append(" </head>\n");
+            html.Append(" <body>\n");
+            html.Append("  <h1> New Films Coming Soon! </h1>\n");
+            html.Append("   <ul>\n");
+            foreach (var film in newFilms)
+            {
+                html.Append("<li>");
+                html.Append(film.title + " " + film.description);
+                html.Append("</li>");
+            }
+
+            html.Append("  </ul>\n");
+            html.Append(" </body>\n");
+            html.Append("</html>");
+
+            string htmlFile = "C:\\Documents\Ancored\C#\newFilms.html";
+            File.WriteAllText(htmlFile, html.ToString());
+        }
+    }
+}
+using System;
+using System.Collections.Generic;
+using System.Text;
+using Microsoft.EntityFrameworkCore;
+
+namespace LAB_11_5_DB_HTML
+{
+    class SakilaContext : DbContext
+    {
+        public DbSet<Film> Film { get; set; }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlServer(@"Server=localhost\sqlexpress;Database=sakila;Trusted_Connection=True;");
+        }
+    }
+}
+
+
